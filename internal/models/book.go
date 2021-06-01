@@ -1,10 +1,7 @@
 package models
 
-import "go.mongodb.org/mongo-driver/bson/primitive"
-
 type Book struct {
-	ID        primitive.ObjectID `bson:"_id"`
-	Title     string             `bson:"title"`
-	ShortDesc string             `bson:"short_desc"`
-	Desc      string             `bson:"desc"`
+	ID    int64  `db:"id"`
+	Title string `db:"title"`
+	Desc  string `db:"description"`
 }
