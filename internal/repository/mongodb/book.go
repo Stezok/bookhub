@@ -37,7 +37,7 @@ func (mr *MongodbBookRepository) DeleteBook(ctx context.Context, hexID string) e
 	return err
 }
 
-func NewMongodbRepository(db *mongo.Database) *MongodbBookRepository {
+func NewMongodbBookRepository(db *mongo.Database) *MongodbBookRepository {
 	return &MongodbBookRepository{
 		db: db,
 	}

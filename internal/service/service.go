@@ -7,8 +7,9 @@ import (
 )
 
 type Book interface {
-	GetBook(context.Context, string) (models.Book, error)
-	DeleteBook(context.Context, string) error
+	GetBooks(context.Context) ([]models.Book, error)
+	GetBook(context.Context, int64) (models.Book, error)
+	DeleteBook(context.Context, int64) error
 }
 
 type Service struct {
