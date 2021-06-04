@@ -26,6 +26,21 @@ func (br *MySQLBookRepository) GetBook(ctx context.Context, id int64) (models.Bo
 	return book, err
 }
 
+func (br *MySQLBookRepository) CreateBook(ctx context.Context, book models.Book) (int64, error) {
+	query := `INSERT INTO Book (title, description) VALUES(?, ?)`
+	result, err := br.db.ExecContext(ctx, query, book.Title, book.Desc)
+	if err != nil {
+		return 0, err
+	}
+	return result.LastInsertId()
+}
+
+func (br *MySQLBookRepository) UpdateBook(ctx context.Context, book models.Book) error {
+	query := `UPDATE Book SET title = ?, description = ? WHERE id = ?`
+	_, err := br.db.ExecContext(ctx, query, book.Title, book.Desc, book.ID)
+	return err
+}
+
 func (br *MySQLBookRepository) DeleteBook(ctx context.Context, id int64) error {
 	query := `DELETE FROM Book WHERE id = ?`
 	_, err := br.db.ExecContext(ctx, query, id)
