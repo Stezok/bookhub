@@ -15,8 +15,11 @@ type APIHandler struct {
 func (h *APIHandler) InitRoutes() *gin.Engine {
 	router := gin.New()
 
+	router.POST("/new/book", h.CreateBookHandler)
+
 	router.GET("/books", h.GetBooksHandler)
 
+	router.PUT("/book/:id", h.UpdateBookHandler)
 	router.GET("/book/:id", h.GetBookHandler)
 	router.DELETE("/book/:id", h.DeleteBookHandler)
 
